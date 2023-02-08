@@ -74,7 +74,7 @@ const ToggleBtn = styled.button`
 `;
 
 
-interface ICoin {
+ interface ICoin {
     id: string,
     name: string,
     symbol: string,
@@ -116,10 +116,9 @@ function Coins(){
                 <ToggleBtn onClick={toggleDarkAtom}>Toggle Mode</ToggleBtn>
                 
             </Title>  
-                 
         </Header>
         {isLoading ? (<Loader>Loading...</Loader>) : <CoinsList>
-            {data?.slice(0,100).map((coin) => <Coin key={coin.id}> <Link to={{
+            {data?.slice(0,100).map((coin) => <Coin key={coin.id} > <Link to={{
                 pathname: `/${coin.id}`,
             }} state={{
                 name: coin.name,

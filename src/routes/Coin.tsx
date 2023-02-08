@@ -157,23 +157,25 @@ interface ICoinProps {
   isDark : boolean;
 }
 
-
+interface CoinId {
+   id:string;
+}
 
 
 function Coin(){
     const {coinId} = useParams();
     const location = useLocation();
-    
     const {state} = location as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
     const coinMatch = useMatch("/:coinId");
     const coinid = coinMatch?.params.coinId;
-    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinid ? coinid : ""], ()=> fetchCoinInfo(coinid? coinid.slice(0,8) : "",),{
+    
+    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo(coinId? coinId: "",),{
       refetchInterval: 5000,
     });
     
-    const {isLoading: tickerLoading, data: tickersData} = useQuery<PriceData>(["tickers",coinid ? coinid : ""], () => fetchCoinTickers(coinid? coinid.slice(0,8) : ""));
+    const {isLoading: tickerLoading, data: tickersData} = useQuery<PriceData>(["tickers",coinId ? coinId : ""], () => fetchCoinTickers(coinId? coinId : ""));
     
     
     // const [loading, setLoading] = useState(true);
