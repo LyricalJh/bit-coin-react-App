@@ -10,9 +10,9 @@ interface IRouter {
 
 function Router(){
     return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
-           <Route  path='/:coinId/*' element={<Coin />}>
+           <Route  path='/:coinId/*' element={<Coin/>}>
            </Route>
            <Route  path='/' element={<Coins />}>
            </Route>

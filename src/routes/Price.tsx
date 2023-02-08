@@ -56,7 +56,7 @@ interface CoinPrice {
 function Price(){
     const {coinId} = useParams();
     const {isLoading, data: CoinPrice} = useQuery<CoinPrice>(["priceCoin", coinId], () => fetchCoinPrice(coinId || ""));
-    console.log(CoinPrice);
+    
     return (
         <div>
             {isLoading ? "Loading.." : <ApexChart

@@ -26,7 +26,7 @@ function Chart(){
     
     const isDark = useRecoilValue(isDarkAtom);
     const {isLoading, data: coinHistory} = useQuery<IHistorical[]>(["ohlcv", coinId], ()=> fetchCoinHistory(coinId ? coinId : ""),{refetchInterval: 10000})
-    console.log(coinHistory ? coinHistory[0].time_close : 0)
+    
        return (
         <div>
           {isLoading ? (

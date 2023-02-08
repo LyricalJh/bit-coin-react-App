@@ -6,6 +6,7 @@ import { fetchCoinInfo, fetchCoinTickers } from "./api";
 import Chart from "./Chart";
 import Price from "./Price";
 import { Helmet } from "react-helmet-async";
+import { type } from "os";
 
 const Box =styled.div`
   display: flex;
@@ -162,13 +163,15 @@ interface ICoinProps {
 function Coin(){
     const {coinId} = useParams();
     const location = useLocation();
+    
     const {state} = location as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
-    const coinMatch = useMatch("/:coindId");
-    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo(coinId? coinId : "",),{
+
+    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId.slice(0,8) : ""], ()=> fetchCoinInfo(coinId? coinId : "",),{
       refetchInterval: 5000,
     });
+    
     const {isLoading: tickerLoading, data: tickersData} = useQuery<PriceData>(["tickers",coinId ? coinId : ""], () => fetchCoinTickers(coinId? coinId : ""));
     
     
