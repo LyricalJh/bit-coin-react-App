@@ -1,4 +1,4 @@
-import { json } from "stream/consumers";
+
 
 const BASE_URL = 'https://api.coinpaprika.com/v1';
 const SECOND_URL = `https://ohlcv-api.nomadcoders.workers.dev`

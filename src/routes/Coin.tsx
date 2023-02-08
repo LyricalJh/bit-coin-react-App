@@ -162,13 +162,14 @@ interface ICoinProps {
 
 function Coin(){
     const {coinId} = useParams();
+    
     const location = useLocation();
     
     const {state} = location as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
 
-    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId.slice(0,8) : ""], ()=> fetchCoinInfo(coinId? coinId : "",),{
+    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo(coinId? coinId : "",),{
       refetchInterval: 5000,
     });
     
