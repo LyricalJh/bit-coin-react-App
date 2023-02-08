@@ -29,7 +29,7 @@ export function fetchCoinHistory(coinId:string){
 }
 
 export function fetchCoinPrice(coinId:string){
-    return fetch(`${SECOND_URL}/?coinId={${coinId}}`).then((response) => 
+    return fetch(`${BASE_URL}/tickers/${coinId}`).then((response) => 
     response.json()
     );
 }

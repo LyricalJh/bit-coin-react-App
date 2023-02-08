@@ -24,8 +24,9 @@ const Loader = styled.span`
 const Header = styled.header`
     height: 10vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
+   justify-content: center;
+   align-items: center;
+
 
 `;
 
@@ -73,8 +74,19 @@ const Description = styled.p`
 `;
 
 const Title  = styled.h1`
+    margin-left: 20px;
     font-size: 48px;
     color: ${(props) => props.theme.accentColor};
+`;
+
+const PreBTn = styled.span`
+    width: 80px;
+    height: 20px;
+    background-color: ${(props) => props.theme.accentColor};
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 interface RouteState{
@@ -153,6 +165,7 @@ function Coin(){
     const {state} = location as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
+    const coinMatch = useMatch("/:coindId");
     const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo(coinId? coinId : "",),{
       refetchInterval: 5000,
     });
@@ -177,14 +190,19 @@ function Coin(){
       <Box>
       <Container>
         <Helmet>
+          
           <title>{state?.name ? state.name : "Loading..."}</title>
         </Helmet>
       <Header>
-        <Title>
+        <Link to={"/"}>
+       <PreBTn>뒤로가기</PreBTn>
+      </Link>
+        <Title >
           {/* {state?.name ? state.name : "Loading..."} */}
           비트코인
         </Title>
       </Header>
+      
       {loading ? (
         <Loader>Loading...</Loader>
       ) : (
