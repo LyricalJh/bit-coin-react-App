@@ -164,18 +164,20 @@ interface CoinId {
 
 function Coin(){
     const {coinId} = useParams();
+    console.log(coinId);
     const location = useLocation();
+    
     const {state} = location as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
     const coinMatch = useMatch("/:coinId");
     const coinid = coinMatch?.params.coinId;
     
-    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo("btc-bitcoin"),{
+    const {isLoading: infoLoading, data: infoData} = useQuery<InfoData>(["info", coinId ? coinId : ""], ()=> fetchCoinInfo(coinId ? coinId : ""),{
       refetchInterval: 5000,
     });
     
-    const {isLoading: tickerLoading, data: tickersData} = useQuery<PriceData>(["tickers",coinId ? coinId : ""], () => fetchCoinTickers("btc-bitcoin"));
+    const {isLoading: tickerLoading, data: tickersData} = useQuery<PriceData>(["tickers",coinId ? coinId : ""], () => fetchCoinTickers(coinId ? coinId : ""));
     
     
     // const [loading, setLoading] = useState(true);
